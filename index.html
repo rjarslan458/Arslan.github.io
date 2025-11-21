@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sorry Areeba </title>
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #2b1055, #7597de);
+  font-family: "Poppins", sans-serif;
+  color: white;
+  overflow: hidden;
+}
+.container {
+  text-align: center;
+  padding: 40px 20px;
+}
+.title {
+  font-size: 3rem;
+  margin-top: 15px;
+  animation: fade 1.5s ease-in-out;
+}
+@keyframes fade {
+  from {opacity:0; transform:translateY(-20px);} 
+  to {opacity:1; transform:translateY(0);} 
+}
+.floating-text {
+  font-size: 2rem;
+  margin-top: 30px;
+  animation: softGlow 3s infinite ease-in-out;
+  min-height: 50px;
+}
+@keyframes softGlow {
+  0%,100%{ text-shadow:0 0 10px #fff; opacity:0.8; }
+  50%{ text-shadow:0 0 20px #ffd2d2; opacity:1; }
+}
+.rom-img {
+  margin-top: 25px;
+  width: 230px;
+  border-radius: 15px;
+  box-shadow: 0 0 25px rgba(255,255,255,0.3);
+  animation: fade 1.5s;
+}
+.question-box {
+  margin-top: 25px;
+  background: rgba(255,255,255,0.15);
+  padding: 18px;
+  border-radius: 14px;
+  display: inline-block;
+  backdrop-filter: blur(6px);
+}
+.btn {
+  padding: 12px 25px;
+  margin: 8px;
+  border: none;
+  border-radius: 999px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: 0.3s;
+  position: relative;
+}
+.yes { background: #ff4d6d; color: white; }
+.ok { background: #ff6b81; color: white; }
+.no { background: #1dd1a1; color: white; }
+.final-text {
+  margin-top: 30px;
+  font-size: 1.7rem;
+  display: none;
+  animation: fade 1.5s ease-in-out;
+}
+/* Floating hearts */
+.heart {
+  position: fixed;
+  color: #ff6b81;
+  font-size: 25px;
+  animation: floatUp 5s linear infinite;
+  opacity: 0.8;
+}
+@keyframes floatUp {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-800px) scale(1.4); opacity: 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1 class="title">I'm Really Sorry, Areeba 💖</h1>
+
+  <div class="floating-text" id="sorryText">Sorry 💗 Areeba</div>
+
+  <div class="question-box" id="questionBox">
+    <p style="font-size:1.4rem;" id="questionText">Areeba mujhe se naraz hain…? 💔</p>
+    <button class="btn yes" id="yesBtn">Yes</button>
+    <button class="btn no" id="noBtn">No</button>
+  </div>
+
+  
+
+  <div class="final-text" id="finalMsg">
+    Mujhe pata tha, Areeba, ap mujhe maaf kar dain gi… Masoom hain ap bohat zyada ❤️🥺
+  </div>
+</div>
+
+<script>
+// Floating romantic words
+const words = [
+  "Sorry 💗 Areeba",
+  "Please Forgive Me 💖 Areeba",
+  "You Mean A Lot To Me ❤️ Areeba",
+  "You're Very Special ✨ Areeba",
+  "I'm Really Sorry 💞 Areeba"
+];
+let w = 0;
+setInterval(() => {
+  document.getElementById('sorryText').innerText = words[w];
+  w = (w + 1) % words.length;
+}, 2000);
+
+// Stepwise messages
+let step = 0;
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const questionBox = document.getElementById("questionBox");
+const questionText = document.getElementById("questionText");
+const finalMsg = document.getElementById("finalMsg");
+
+// Save NO button original position
+const noOriginalTop = noBtn.offsetTop;
+const noOriginalLeft = noBtn.offsetLeft;
+
+// Step 1 YES
+yesBtn.addEventListener("click", () => {
+  if(step === 0){
+    questionText.innerText = "Man jao na… next time promise nahi karunga 😢❤️";
+
+    // Hide YES, create OK button
+    yesBtn.style.display = "none";
+    const okBtn = document.createElement("button");
+    okBtn.classList.add("btn", "ok");
+    okBtn.id = "okBtn";
+    okBtn.innerText = "OK";
+    questionBox.appendChild(okBtn);
+
+    step = 1;
+
+    // Step 2 OK & NO logic
+    okBtn.addEventListener("click", () => {
+      finalMsg.style.display = "block";
+      step = 3;
+      // Reset NO button position
+      noBtn.style.position = "relative";
+      noBtn.style.top = "0";
+      noBtn.style.left = "0";
+    });
+
+    noBtn.addEventListener("click", () => {
+      if(step === 1){
+        // Step 2 NO → Step 3 message
+        questionText.innerText = "Pakka pakka promise… ab kabhi hurt nahi karunga ❤️✨\nPlz man jao 😢";
+        step = 2;
+      }
+    });
+  }
+});
+
+// Step 3 NO runaway
+noBtn.addEventListener("click", () => {
+  if(step === 2){
+    noBtn.style.position = "absolute";
+    noBtn.style.left = Math.random() * 80 + "%";
+    noBtn.style.top = Math.random() * 70 + "%";
+  }
+});
+
+// Step 1 NO → final
+noBtn.addEventListener("click", () => {
+  if(step === 0){
+    finalMsg.style.display = "block";
+    step = 3;
+    noBtn.style.position = "relative";
+    noBtn.style.top = "0";
+    noBtn.style.left = "0";
+  }
+});
+
+// Floating hearts
+setInterval(() => {
+  let heart = document.createElement('div');
+  heart.classList.add('heart');
+  heart.innerHTML = '❤';
+  heart.style.left = Math.random() * 100 + 'vw';
+  heart.style.bottom = '-20px';
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 5000);
+}, 400);
+</script>
+
+</body>
+</html>
