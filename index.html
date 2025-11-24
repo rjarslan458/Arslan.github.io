@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sorry Areeba </title>
+<title>Sorry (Him / Her Name)</title>
 <style>
 body {
   margin: 0;
@@ -36,13 +36,6 @@ body {
   0%,100%{ text-shadow:0 0 10px #fff; opacity:0.8; }
   50%{ text-shadow:0 0 20px #ffd2d2; opacity:1; }
 }
-.rom-img {
-  margin-top: 25px;
-  width: 230px;
-  border-radius: 15px;
-  box-shadow: 0 0 25px rgba(255,255,255,0.3);
-  animation: fade 1.5s;
-}
 .question-box {
   margin-top: 25px;
   background: rgba(255,255,255,0.15);
@@ -70,7 +63,6 @@ body {
   display: none;
   animation: fade 1.5s ease-in-out;
 }
-/* Floating hearts */
 .heart {
   position: fixed;
   color: #ff6b81;
@@ -87,31 +79,28 @@ body {
 <body>
 
 <div class="container">
-  <h1 class="title">I'm Really Sorry, Areeba 💖</h1>
+  <h1 class="title">I'm Really Sorry, (Him / Her Name) 💖</h1>
 
-  <div class="floating-text" id="sorryText">Sorry 💗 Areeba</div>
+  <div class="floating-text" id="sorryText">Sorry 💗 (Him / Her Name)</div>
 
   <div class="question-box" id="questionBox">
-    <p style="font-size:1.4rem;" id="questionText">Areeba mujhe se naraz hain…? 💔</p>
+    <p style="font-size:1.4rem;" id="questionText">(Him / Her Name) mujhe se naraz hain…? 💔</p>
     <button class="btn yes" id="yesBtn">Yes</button>
     <button class="btn no" id="noBtn">No</button>
   </div>
 
-  
-
   <div class="final-text" id="finalMsg">
-    Mujhe pata tha, Areeba, ap mujhe maaf kar dain gi… Masoom hain ap bohat zyada ❤️🥺
+    Mujhe pata tha, (Him / Her Name), mujhe maaf kar do gy ❤️🥺
   </div>
 </div>
 
 <script>
-// Floating romantic words
 const words = [
-  "Sorry 💗 Areeba",
-  "Please Forgive Me 💖 Areeba",
-  "You Mean A Lot To Me ❤️ Areeba",
-  "You're Very Special ✨ Areeba",
-  "I'm Really Sorry 💞 Areeba"
+  "Sorry 💗 (Him / Her Name)",
+  "Please Forgive Me 💖 (Him / Her Name)",
+  "You Mean A Lot To Me ❤️ (Him / Her Name)",
+  "You're Very Special ✨ (Him / Her Name)",
+  "I'm Really Sorry 💞 (Him / Her Name)"
 ];
 let w = 0;
 setInterval(() => {
@@ -119,7 +108,6 @@ setInterval(() => {
   w = (w + 1) % words.length;
 }, 2000);
 
-// Stepwise messages
 let step = 0;
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
@@ -127,16 +115,13 @@ const questionBox = document.getElementById("questionBox");
 const questionText = document.getElementById("questionText");
 const finalMsg = document.getElementById("finalMsg");
 
-// Save NO button original position
 const noOriginalTop = noBtn.offsetTop;
 const noOriginalLeft = noBtn.offsetLeft;
 
-// Step 1 YES
 yesBtn.addEventListener("click", () => {
   if(step === 0){
-    questionText.innerText = "Man jao na… next time promise nahi karunga 😢❤️";
+    questionText.innerText = "Man jao na… next time promise nahi ho ga 😢❤️";
 
-    // Hide YES, create OK button
     yesBtn.style.display = "none";
     const okBtn = document.createElement("button");
     okBtn.classList.add("btn", "ok");
@@ -146,11 +131,9 @@ yesBtn.addEventListener("click", () => {
 
     step = 1;
 
-    // Step 2 OK & NO logic
     okBtn.addEventListener("click", () => {
       finalMsg.style.display = "block";
       step = 3;
-      // Reset NO button position
       noBtn.style.position = "relative";
       noBtn.style.top = "0";
       noBtn.style.left = "0";
@@ -158,15 +141,13 @@ yesBtn.addEventListener("click", () => {
 
     noBtn.addEventListener("click", () => {
       if(step === 1){
-        // Step 2 NO → Step 3 message
-        questionText.innerText = "Pakka pakka promise… ab kabhi hurt nahi karunga ❤️✨\nPlz man jao 😢";
+        questionText.innerText = "Pakka pakka promise… ab kabhi hurt nahi kro ga  ❤️✨\nPlz man jao 😢";
         step = 2;
       }
     });
   }
 });
 
-// Step 3 NO runaway
 noBtn.addEventListener("click", () => {
   if(step === 2){
     noBtn.style.position = "absolute";
@@ -175,7 +156,6 @@ noBtn.addEventListener("click", () => {
   }
 });
 
-// Step 1 NO → final
 noBtn.addEventListener("click", () => {
   if(step === 0){
     finalMsg.style.display = "block";
@@ -186,7 +166,6 @@ noBtn.addEventListener("click", () => {
   }
 });
 
-// Floating hearts
 setInterval(() => {
   let heart = document.createElement('div');
   heart.classList.add('heart');
@@ -200,3 +179,5 @@ setInterval(() => {
 
 </body>
 </html>
+
+
