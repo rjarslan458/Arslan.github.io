@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sorry (Him / Her Name)</title>
+<title>Sorry Meerab</title>
 <style>
 body {
   margin: 0;
@@ -79,28 +79,29 @@ body {
 <body>
 
 <div class="container">
-  <h1 class="title">I'm Really Sorry, (Him / Her Name) 💖</h1>
+  <h1 class="title">I'm Really Sorry, Meerab 💖</h1>
 
-  <div class="floating-text" id="sorryText">Sorry 💗 (Him / Her Name)</div>
+  <div class="floating-text" id="sorryText">Sorry 💗 Meerab</div>
 
   <div class="question-box" id="questionBox">
-    <p style="font-size:1.4rem;" id="questionText">(Him / Her Name) mujhe se naraz hain…? 💔</p>
+    <p style="font-size:1.4rem;" id="questionText">Meerab mujhe se naraz hain…? 💔</p>
     <button class="btn yes" id="yesBtn">Yes</button>
     <button class="btn no" id="noBtn">No</button>
   </div>
 
   <div class="final-text" id="finalMsg">
-    Mujhe pata tha, (Him / Her Name), mujhe maaf kar do gy ❤️🥺
+    Mujhe pata tha, Meerab, ap mujhe maaf kar dain gi… Masoom hain ap bohat zyada ❤️🥺
   </div>
 </div>
 
 <script>
+// Floating romantic words
 const words = [
-  "Sorry 💗 (Him / Her Name)",
-  "Please Forgive Me 💖 (Him / Her Name)",
-  "You Mean A Lot To Me ❤️ (Him / Her Name)",
-  "You're Very Special ✨ (Him / Her Name)",
-  "I'm Really Sorry 💞 (Him / Her Name)"
+  "Sorry 💗 Meerab",
+  "Please Forgive Me 💖 Meerab",
+  "You Mean A Lot To Me ❤️ Meerab",
+  "You're Very Special ✨ Meerab",
+  "I'm Really Sorry 💞 Meerab"
 ];
 let w = 0;
 setInterval(() => {
@@ -108,6 +109,7 @@ setInterval(() => {
   w = (w + 1) % words.length;
 }, 2000);
 
+// Stepwise messages
 let step = 0;
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
@@ -118,9 +120,10 @@ const finalMsg = document.getElementById("finalMsg");
 const noOriginalTop = noBtn.offsetTop;
 const noOriginalLeft = noBtn.offsetLeft;
 
+// Step 1 YES
 yesBtn.addEventListener("click", () => {
   if(step === 0){
-    questionText.innerText = "Man jao na… next time promise nahi ho ga 😢❤️";
+    questionText.innerText = "Man jao na… next time promise nahi karunga 😢❤️";
 
     yesBtn.style.display = "none";
     const okBtn = document.createElement("button");
@@ -141,13 +144,14 @@ yesBtn.addEventListener("click", () => {
 
     noBtn.addEventListener("click", () => {
       if(step === 1){
-        questionText.innerText = "Pakka pakka promise… ab kabhi hurt nahi kro ga  ❤️✨\nPlz man jao 😢";
+        questionText.innerText = "Pakka pakka promise… ab kabhi hurt nahi karunga ❤️✨\nPlz man jao 😢";
         step = 2;
       }
     });
   }
 });
 
+// Step 3 NO runaway
 noBtn.addEventListener("click", () => {
   if(step === 2){
     noBtn.style.position = "absolute";
@@ -156,6 +160,7 @@ noBtn.addEventListener("click", () => {
   }
 });
 
+// Step 1 NO → final
 noBtn.addEventListener("click", () => {
   if(step === 0){
     finalMsg.style.display = "block";
@@ -166,6 +171,7 @@ noBtn.addEventListener("click", () => {
   }
 });
 
+// Floating hearts
 setInterval(() => {
   let heart = document.createElement('div');
   heart.classList.add('heart');
@@ -179,5 +185,7 @@ setInterval(() => {
 
 </body>
 </html>
+
+
 
 
